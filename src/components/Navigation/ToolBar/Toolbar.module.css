@@ -1,8 +1,7 @@
 .ToolBar{
-    position: fixed;
-    z-index: 90;
+    position: sticky;
     top: 0;
-    left: 0;
+    z-index: 100;
     width: 100%;
     display: flex;
     flex-flow: wrap;
@@ -10,20 +9,26 @@
     justify-content: space-between;
     background-color: black;
     color: white;
-    padding: 0 20px;
     box-sizing:border-box;
     
 }
-
-.ToolBar nav{
-    height: 100%;
+.DefaultNavItem{
+    padding: 10px;
+    cursor: pointer;
 }
-.Logo{
-    height: 80%;
+.DefaultNavItem:hover{
+    background-color: white;
+    color: black;    
+}
+.MobileOnly{
+    display: none;
 }
 
-@media (max-width:499px){
+@media (max-width:600px){
     .DesktopOnly{
         display: none;
+    }
+    .MobileOnly{
+        display: flex;
     }
 }

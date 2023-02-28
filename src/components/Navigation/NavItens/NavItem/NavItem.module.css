@@ -1,0 +1,21 @@
+.NavItem{
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    cursor: pointer;
+    text-decoration:none;
+    box-sizing: border-box;
+}
+
+.NavItem:hover{
+    background-color: black;
+    color: white;
+}
+
+@media(min-width:600px){
+    .NavItem:hover{
+        background-color: white;
+        color: black;
+    }   
+}

@@ -1,4 +1,5 @@
 import React from "react"
+import NavItens from "../NavItens/NavItens";
 import classes from './Toolbar.module.css';
 
 export default (props) =>
@@ -6,12 +7,15 @@ export default (props) =>
 
     return(
     <header className={classes.ToolBar}>
-        <div>Logo</div>
-        <div className={classes.DesktopOnly} >
-                <nav>Categories</nav>
-                <nav>Categories</nav>
+        <div className={classes.MobileOnly} onClick={props.toggleDrawer}>
+            =
         </div>
-        <div>Search</div>
+        <div className={classes.DefaultNavItem}>Logo</div>
+        <section className={classes.DesktopOnly} >
+            <NavItens/>
+        </section>
+
+        <div className={classes.DefaultNavItem}>Search</div>
     </header>
 
     )
