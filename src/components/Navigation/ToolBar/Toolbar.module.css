@@ -12,14 +12,6 @@
     box-sizing:border-box;
     
 }
-.DefaultNavItem{
-    padding: 10px;
-    cursor: pointer;
-}
-.DefaultNavItem:hover{
-    background-color: white;
-    color: black;    
-}
 .MobileOnly{
     display: none;
 }

@@ -6,6 +6,8 @@
     cursor: pointer;
     text-decoration:none;
     box-sizing: border-box;
+    text-decoration: none;
+    color: black;
 }
 
 .NavItem:hover{
@@ -14,6 +16,9 @@
 }
 
 @media(min-width:600px){
+    .NavItem{
+        color: white;
+    }
     .NavItem:hover{
         background-color: white;
         color: black;

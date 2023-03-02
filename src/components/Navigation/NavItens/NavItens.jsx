@@ -5,8 +5,8 @@ import classes from './NavItens.module.css';
 export default (props) =>{
     return(
         <div className={classes.NavItens}>
-            <NavItem>Categories</NavItem>
-            <NavItem>About</NavItem>
+            <NavItem link={'/posts'}>Categories</NavItem>
+            <NavItem link={'about'}>About</NavItem>
         </div>
     )
 }

@@ -1,0 +1,14 @@
+.PostCards{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 60%;
+    grid-gap: 2vw;
+}
+
+@media (max-width: 600px){
+    .PostCards{
+        grid-template-columns: 1fr;
+        width: 80%;
+        margin: auto;
+    }
+}

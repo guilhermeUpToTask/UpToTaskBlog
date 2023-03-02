@@ -1,0 +1,41 @@
+.PostCard{
+    text-align: left;
+    border: 1px solid black;
+    overflow: hidden;
+}
+h2 {
+    font-size:2vw;
+    margin: 1vw;
+}
+h3{
+    font-size: 1.5vw;
+    margin: 1vw;
+}
+.FirstCard{
+    grid-column: 3/1;
+    border: 1px solid rgb(150, 150, 150);
+}
+.FirstCard h2{
+    font-size: 3vw;
+}
+.FirstCard h3{
+    font-size: 2.5vw;
+}
+
+@media (max-width: 600px){
+    h2{
+        font-size: 4vw;
+    }
+    h3{
+        font-size: 3vw;
+    }
+    .FirstCard{
+        grid-column: 1;
+    }
+    .FirstCard h2{
+        font-size: 4vw;
+    }
+    .FirstCard h3{
+        font-size: 3vw;
+    }
+}

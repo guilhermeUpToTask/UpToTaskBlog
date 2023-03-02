@@ -1,0 +1,11 @@
+.DefaultNavItem {
+    padding: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+}
+
+.DefaultNavItem:hover {
+    background-color: white;
+    color: black;
+}

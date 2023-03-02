@@ -1,7 +1,8 @@
 import React from "react"
 import NavItens from "../NavItens/NavItens";
 import classes from './Toolbar.module.css';
-
+import { NavLink } from "react-router-dom";
+import DefaultNavItem from "../DefaultNavItem/DefaultNavItem";
 export default (props) =>
 {
 
@@ -10,12 +11,14 @@ export default (props) =>
         <div className={classes.MobileOnly} onClick={props.toggleDrawer}>
             =
         </div>
-        <div className={classes.DefaultNavItem}>Logo</div>
+
+        <DefaultNavItem link={'/posts'}>Logo</DefaultNavItem>
+
         <section className={classes.DesktopOnly} >
             <NavItens/>
         </section>
 
-        <div className={classes.DefaultNavItem}>Search</div>
+        <DefaultNavItem link={'/search'}>Search</DefaultNavItem>
     </header>
 
     )
