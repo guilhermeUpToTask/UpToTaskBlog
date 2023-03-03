@@ -3,11 +3,11 @@
     border: 1px solid black;
     overflow: hidden;
 }
-h2 {
+.PostCard h2 {
     font-size:2vw;
     margin: 1vw;
 }
-h3{
+.PostCard h3{
     font-size: 1.5vw;
     margin: 1vw;
 }
@@ -23,10 +23,10 @@ h3{
 }
 
 @media (max-width: 600px){
-    h2{
+    .PostCard h2{
         font-size: 4vw;
     }
-    h3{
+    .PostCard h3{
         font-size: 3vw;
     }
     .FirstCard{

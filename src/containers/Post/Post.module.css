@@ -1,0 +1,13 @@
+.Post{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 2vw;
+    margin: 2vw 1vw;
+}
+
+@media(max-width: 600px){
+    .Post{
+        grid-template-columns: 1fr;
+        column-gap: 0;
+    }
+}

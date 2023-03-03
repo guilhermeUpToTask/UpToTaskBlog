@@ -1,0 +1,12 @@
+.ArticleGuide{
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 1.5vw;
+    box-sizing: border-box;
+}
+
+@media(max-width:600px){
+    .ArticleGuide{
+        display: none;
+    }
+}

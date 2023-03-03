@@ -1,0 +1,8 @@
+.Article{
+    border: 1px solid gray;
+    border-radius: 5%;
+    grid-column: 3/1;
+    padding: 10px;
+    box-sizing: border-box;
+
+}

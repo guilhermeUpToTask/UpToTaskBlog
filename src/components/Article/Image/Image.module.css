@@ -1,0 +1,11 @@
+.Image{
+    width: 100%;
+    height: 40vw;
+    background-color: black;
+}
+
+@media(max-width:600px){
+    .Image{
+        height: 60vw;
+    }
+}

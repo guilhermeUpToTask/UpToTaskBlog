@@ -1,0 +1,10 @@
+.SubTitle{
+    color: rgb(179, 179, 179);
+    font-size:2.5vw;
+}
+
+@media(max-width:600px){
+    .SubTitle{
+        font-size: 4.5vw;
+    }
+}
