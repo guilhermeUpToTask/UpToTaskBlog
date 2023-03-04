@@ -1,12 +1,16 @@
-import React from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import classes from "./Posts.module.css";
 import PostCards from "../../components/PostCards/PostCards";
-const posts = (props) =>{
+import axios from '../../axios-firebase';
+
+const posts = (props) => {
 
 
-    return(
+    return (
         <div className={classes.Posts}>
-            <PostCards/>
+            <Suspense fallback={<h1>Loading</h1>}>
+                <PostCards />
+            </Suspense>
         </div>
     )
 }

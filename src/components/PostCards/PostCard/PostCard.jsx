@@ -7,9 +7,8 @@ export default (props) =>{
     return(
         <div className={apndClasses.join(' ')}>
             <PostPhoto first={props.first}/>
-            <h3>Categorie</h3>
-            <h2>Post Card Title dosakdoaskdoaskdaosko</h2>
-            <h3>author - data</h3>
+            <h2>{props.title}</h2>
+            <h3>{props.author}</h3>
         </div>
     )
 }

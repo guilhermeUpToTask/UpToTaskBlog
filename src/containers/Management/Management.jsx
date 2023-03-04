@@ -1,5 +1,5 @@
 import React from "react";
-import CreatePost from "../../components/CreatePost/CreatePost";
+import CreatePost from "./CreatePost/CreatePost";
 const management = (props) =>{
 
 
