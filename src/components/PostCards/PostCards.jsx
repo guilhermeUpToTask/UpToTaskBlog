@@ -1,43 +1,26 @@
 import React, { useState, useEffect } from "react";
-import axios from '../../axios-firebase';
+import fetchData from "../../api/fetchData";
 import PostCard from "./PostCard/PostCard";
 import classes from "./PostCards.module.css";
+import { useNavigate } from "react-router-dom";
 
-function fetchPosts() {
-    let status = 'pending';
-    let result = '';
 
-    const fetching = axios.get('/posts.json')
-        .then(res => {
-            status = 'fulfilled';
-            result = res.data;
-        })
-        .catch(error => {
-            status = 'rejected';
-            result = error;
-        });
-        console.log('fetching...');
-    return () => {
-        if (status === "pending") {
-            console.log(fetching);
-            throw fetching; // Suspend(A way to tell React data is still fetching)
-        } else if (status === "rejected") {
-            throw result; // Result is an error
-        } else if (status === "fulfilled") {
-            return result; // Result is a fulfilled promise
-        }
-    }
-}
-
-const postData = fetchPosts();
-console.log(postData);
 export default (props) => {
-    const posts = postData();
+
+    const posts = props.loader.read();
+    const navigate = useNavigate(); 
+
+    const onPostClickedHandler=(key) =>{
+        navigate(`/post/${key}`);
+    }
 
     const postCards = [];
     for (let key in posts) {
+        const first = (postCards.length === 0);
+        console.log(first);
         postCards.push(
-            <PostCard key={key} title={posts[key].title} author={posts[key].author} />
+            <PostCard key={key} title={posts[key].title} author={posts[key].author} first={first} 
+            clicked={() => onPostClickedHandler(key)}/>
         );
     }
 

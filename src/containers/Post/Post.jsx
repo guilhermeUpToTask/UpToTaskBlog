@@ -1,14 +1,20 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Article from "../../components/Article/Article";
 import ArticleGuide from "../../components/ArticleGuide/ArticleGuide";
 import SideContent from "../../components/SideContent/SideContent";
-import classes from './Post.module.css' 
-const post = (props) =>{
+import classes from './Post.module.css';
+import { useLoaderData, useParams } from "react-router";
 
+const post = (props) =>{
+    const loader = useLoaderData();
 
     return(
         <div className={classes.Post}>
-            <Article/><SideContent/>
+            <Suspense fallback={<h1>Loading...</h1>}>
+                <Article loader={loader}/>
+                <SideContent/>
+            </Suspense>
+        
         </div>
     )
 }
