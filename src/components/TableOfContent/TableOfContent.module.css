@@ -1,12 +1,18 @@
-.ArticleGuide{
+
+
+.TableOfContent{
     border: 1px solid gray;
     border-radius: 5px;
     padding: 1.5vw;
     box-sizing: border-box;
+    position: sticky;
+    top: var(--afterToolbar);
+    display: flex;
+    flex-flow: column;
 }
 
 @media(max-width:600px){
-    .ArticleGuide{
+    .TableOfContent{
         display: none;
     }
 }

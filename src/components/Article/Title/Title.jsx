@@ -3,8 +3,8 @@ import classes from './Title.module.css'
 
 export default (props) =>{
     return(
-        <h2 className={classes.Title}>
+        <h1 className={classes.Title}>
             {props.children}
-        </h2>
+        </h1>
     )
 }

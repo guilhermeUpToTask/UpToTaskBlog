@@ -20,6 +20,7 @@ export default (promise) => {
         /// when read is executable it will throw something based in status, if data still not fetched yet, 
         //will throw a promise so react suspender can hanlder
         read: () => {
+            console.log('reading '+status);
             switch (status) {
                 case 'pending': throw suspender;
                 case 'error': throw result;
