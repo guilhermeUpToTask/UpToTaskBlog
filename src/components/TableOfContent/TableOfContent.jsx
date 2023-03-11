@@ -12,25 +12,24 @@ export default (props) =>{
         }))
       setHeadings(elements);
 
-
     },[])
 
-    const location=useLocation();
-    const headingComponents = headings?.map((elem) => 
-    <NavLink replace key={elem.id} to={`#${elem.id}`} onClick={(e) => onHeadingClickHandler(e, elem.id)}>{elem.headingName}</NavLink>)
-     ?? 'loading';
+    const needToHandleInitialHashLink ='';
+    const needToHandleCurrentHeadingOnView = '';
 
+    const headingComponents = headings?.map((elem) => 
+    <NavLink key={elem.id} to={`#${elem.id}`} onClick={(e) => onHeadingClickHandler(e, elem.id)}>{elem.headingName}</NavLink>)
+     ?? 'loading';
+    const location=useLocation();
 
     const onHeadingClickHandler = (e, id) =>{
       if (location.hash === `#${id}`)
           e.preventDefault();
 
-       console.log(location);
         document.querySelector(`#${id}`).scrollIntoView({
             behavior: "smooth",
-            block: "center"
+            block: "start"
           });
-
         }
 
     return(

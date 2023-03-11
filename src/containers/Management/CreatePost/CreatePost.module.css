@@ -1,0 +1,17 @@
+.CreatePost {
+    display: block;
+    margin: 10px 5vw;
+}
+
+.CreatePost > form {
+    text-align: center;
+}
+
+.CreatePost form input {
+    display: block;
+    margin: 5px auto;
+    padding: 5px;
+
+    box-sizing: border-box;
+    width: 25vw;
+}
