@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import classes from './CreatePost.module.css';
 import axios from "../../../axios-firebase";
+import InputProps from "../../../api/Classes/InputProps";
+import SelectProps from "../../../api/Classes/SelectProps";
+import Input from "../../../components/UI/Input/Input";
+
 
 export default (props) =>{
     const [compBuilders, setCompBuilders] = useState([]);
@@ -8,6 +12,12 @@ export default (props) =>{
     const [thumbNail, setThumbNail] = useState('noUrl');
     const [showSelectAddComponent, setShowSelectAddComponent] = useState(false);
     const [selectedCompType, setSelectedCompType] = useState('none');
+    const [selectCompProps, setSelectCompProps] = useState(new SelectProps('select',
+    {options:[{value:'none', displayValue:'Please choose a Component Type'}, 
+    {value:'text', displayValue: 'Text'},
+    {value:'heading', displayValue: 'Heading'}]}));
+
+    console.log(selectCompProps);
 
     const onSubmitHandler =(event) =>{
         event.preventDefault();
@@ -50,13 +60,14 @@ export default (props) =>{
         setShowSelectAddComponent(true);
     }
 
-    const selectCompType = 
-    <select name="componentType" id="select-component" value={selectedCompType} 
-    onChange={(e) => { onAddComponentHandler(e.target.value)}}>
-        <option value="none">Please choose a Component Type</option>
-        <option value="text">Text</option>
-        <option value="heading">Heading</option>
-    </select>
+    const selectCompType = <Input elementType={selectCompProps.elementType}
+    elementConfig={selectCompProps.elementConfig}
+    value={selectCompProps.value}
+    invalid={!selectCompProps.valid}
+    shouldValidate={selectCompProps.validation}
+    touched= {selectCompProps.touched}
+    changed={(event) => onAddComponentHandler(event.target.value)}/>
+
     const addComponent = showSelectAddComponent ? selectCompType : <button onClick={onShowSelectCompHandler}>Add Component</button>
 
 
