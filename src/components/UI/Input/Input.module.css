@@ -11,14 +11,15 @@
 }
 
 .InputElement{
-    width: 100%;
     outline: none;
     border: 1px solid #ccc;
     background-color: white;
     font: inherit;
-    padding: 6px 10px; 
-    box-sizing: border-box;
     display: block;
+    margin: 5px auto;
+    padding: 5px;
+    box-sizing: border-box;
+    width: 25vw;
 }
 .InputElement:focus{
     outline: none;
