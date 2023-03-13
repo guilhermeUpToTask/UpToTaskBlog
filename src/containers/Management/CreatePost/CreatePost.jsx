@@ -8,6 +8,10 @@ import { elementType } from "prop-types";
 
 
 export default (props) => {
+    const needToCreateConstantsFromTypes ='';
+    const needToOutSourceTheSelectComponent='';
+    const needToCreateImageInput = '';
+
     const [elemBuilders, setElemBuilders] = useState([]);
     const [title, setTitle] = useState('Default Title');
     const [thumbNail, setThumbNail] = useState('noUrl');
