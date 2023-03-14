@@ -1,11 +1,13 @@
 import React from "react";
+import { AdvancedImage, placeholder, responsive} from "@cloudinary/react";
+import cld from '../../../../cldInstance';
 import classes from './PostPhoto.module.css';
 
 export default (props) =>{
     const apndClasses = props.first ? [classes.PostPhoto, classes.First] : [classes.PostPhoto];
-    return(
-        <div className={apndClasses.join(' ')}>
+    const myImage = cld.image('minimalist');
 
-        </div>
+    return(
+             <AdvancedImage className={apndClasses.join(' ')} cldImg={myImage} plugins={[responsive(),placeholder()]}/>
     )
 }

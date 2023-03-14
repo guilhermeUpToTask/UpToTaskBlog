@@ -1,17 +1,18 @@
-import { AdvancedImage } from "@cloudinary/react";
+import { AdvancedImage, placeholder, responsive} from "@cloudinary/react";
 import React, { Fragment } from "react";
 import classes from './Image.module.css'
-import {fill} from "@cloudinary/url-gen/actions/resize";
-import {CloudinaryImage} from '@cloudinary/url-gen';
-
+import cld from '../../../cldInstance';
 
 
 export default (props) =>{
-    const myImage = new CloudinaryImage('sample', {cloudName: 'dwflpcrlz'}).resize(fill().width(100).height(150));
     
+      const myImage = cld.image('minimalist');
+    
+
+
     return(
         <Fragment>
-            <AdvancedImage cldImg={myImage} />
+            <AdvancedImage style={{maxWidth: '100%'}} cldImg={myImage} plugins={[responsive(),placeholder()]}/>
         </Fragment>
     )
 }
