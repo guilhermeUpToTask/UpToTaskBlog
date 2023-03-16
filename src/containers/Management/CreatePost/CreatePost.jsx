@@ -17,7 +17,7 @@ export default (props) => {
     const [thumbNail, setThumbNail] = useState('noUrl');
     const imgsUpload = useRef([]);
 
-    const onSubmitHandler = (event) => {
+    const onSubmitHandler = async (event) => {
         event.preventDefault();
         let contentStructure = [];
 
@@ -28,10 +28,19 @@ export default (props) => {
             });
         })
         console.log(contentStructure);
-        wrapperFunc(contentStructure).then(result =>{
-            console.log(result);
-        })
+        const [promises, contentIds] = getImgPromises(contentStructure);
+        console.log(promises);
+        console.log(contentIds);
+        Promise.all(promises).then((responses)=>{
+            const newContentStructure = Array.from(contentStructure);
+            responses.map((res, i)=>{
+                const newContent = {...contentStructure[contentIds[i]]};
+                newContent.data = res.data.public_id;
+                newContentStructure[[contentIds[i]]] = newContent;
 
+            });
+            console.log(newContentStructure);
+        })
         const form = {
             title: 'whatever',
             thumbNail: 'img_path',
@@ -52,35 +61,23 @@ export default (props) => {
                     });*/
 
     }
-    const wrapperFunc = async (cont)=>{
-        try{
-            let up = await uploadImages(cont);
-            return up;
-        }
-        catch(err) {
-            console.log(err);
-        }
-    }
 
 
-    const uploadImages = async (contStructure) => {
+    const getImgPromises = (contStructure) => {
         let newContStructure = [...contStructure];
-
+        let promises = [];
+        let ids = [];
         newContStructure.map((contS, i) => {
             if (contS.type === 'IMAGE') {
                 const form = new FormData();
                 form.append('file', contS.data);
                 form.append('folder', 'post');
                 form.append('upload_preset', 'h1myoo06');
-                axios.post('https://api.cloudinary.com/v1_1/dwflpcrlz/upload', form)
-                    .then((res) => {
-                        newContStructure[i] = { type: contS.type, data: res.data.public_id };
-                        console.log(newContStructure[i]);
-                    })
-                    .catch((err) => console.log(err));
+                promises.push(axios.post('https://api.cloudinary.com/v1_1/dwflpcrlz/upload', form));
+                ids.push(i);
             }
         })
-         return newContStructure;
+         return [promises,ids];
     }
 
 
@@ -108,7 +105,6 @@ export default (props) => {
         console.log(updateElemBuilder.inputProps.elementType);
         const newElemBuilders = [...elemBuilders];
         newElemBuilders[i] = updateElemBuilder;
-        console.log(newElemBuilders);
         setElemBuilders(newElemBuilders);
 
     }
