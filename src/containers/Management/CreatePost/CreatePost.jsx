@@ -1,28 +1,35 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import classes from './CreatePost.module.css';
 import axios from "../../../axios-firebase";
 import InputProps from "../../../api/Classes/InputProps";
-import SelectProps from "../../../api/Classes/SelectProps";
 import Input from "../../../components/UI/Input/Input";
 import SelectComponent from "../../../components/SelectComponent/SelectComponent";
+import * as elType from "../../../api/Constants/DynamicElementType";
+import { image } from "@cloudinary/url-gen/qualifiers/source";
 
 export default (props) => {
     const needToCreateImageInput = '';
-    const needToChooseInputTypeFromElType='';
+    const needToChooseInputTypeFromElType = '';
 
-    
+
     const [elemBuilders, setElemBuilders] = useState([]);
     const [title, setTitle] = useState('Default Title');
     const [thumbNail, setThumbNail] = useState('noUrl');
+    const imgsUpload = useRef([]);
 
     const onSubmitHandler = (event) => {
         event.preventDefault();
         let contentStructure = [];
-        elemBuilders.map(elBuilder =>{
+
+        elemBuilders.map(elBuilder => {
             contentStructure.push({
-                type:elBuilder.contentType, 
-                content:{ text: elBuilder.inputProps.value} 
+                type: elBuilder.contentType,
+                data: elBuilder.inputProps.value
             });
+        })
+        console.log(contentStructure);
+        wrapperFunc(contentStructure).then(result =>{
+            console.log(result);
         })
 
         const form = {
@@ -35,34 +42,76 @@ export default (props) => {
             },
             contentStructure,
         };
-
-        axios.post('/posts.json', form)
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        /*
+                axios.post('/posts.json', form)
+                    .then((response) => {
+                        console.log(response);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });*/
 
     }
+    const wrapperFunc = async (cont)=>{
+        try{
+            let up = await uploadImages(cont);
+            return up;
+        }
+        catch(err) {
+            console.log(err);
+        }
+    }
+
+
+    const uploadImages = async (contStructure) => {
+        let newContStructure = [...contStructure];
+
+        newContStructure.map((contS, i) => {
+            if (contS.type === 'IMAGE') {
+                const form = new FormData();
+                form.append('file', contS.data);
+                form.append('folder', 'post');
+                form.append('upload_preset', 'h1myoo06');
+                axios.post('https://api.cloudinary.com/v1_1/dwflpcrlz/upload', form)
+                    .then((res) => {
+                        newContStructure[i] = { type: contS.type, data: res.data.public_id };
+                        console.log(newContStructure[i]);
+                    })
+                    .catch((err) => console.log(err));
+            }
+        })
+         return newContStructure;
+    }
+
 
     const onAddComponentHandler = (type) => {
-        const newInputProps = new InputProps('input', { type: 'input', placeholder: `Write the ${type}` });
+        const inputType = elTypeToInptType(type);
+        const newInputProps = new InputProps(inputType, { type: inputType, placeholder: `Write the ${type}` });
         const newContentType = type;
         const updatedElemBuilders = elemBuilders.concat({ inputProps: newInputProps, contentType: newContentType });
         setElemBuilders(updatedElemBuilders);
 
     }
 
-    const onInputChangeHandler = (value, i) =>{
-        const updateElemBuilder = {...elemBuilders[i]};
-        updateElemBuilder.inputProps.value=value;
+    const elTypeToInptType = (elemType) => {
+        switch (elemType) {
+            case elType.HEADING: return 'input';
+            case elType.TEXT: return 'text';
+            case elType.IMAGE: return 'file';
+            default: return '';
+        }
+    }
+
+    const onInputChangeHandler = (value, i) => {
+        const updateElemBuilder = { ...elemBuilders[i] };
+        updateElemBuilder.inputProps.value = value;
+        console.log(updateElemBuilder.inputProps.elementType);
         const newElemBuilders = [...elemBuilders];
         newElemBuilders[i] = updateElemBuilder;
+        console.log(newElemBuilders);
         setElemBuilders(newElemBuilders);
 
     }
-
     const displayElemBuilders = elemBuilders.map((elBuilder, i) => {
         return (<Input key={elBuilder.contentType + i}
             elementType={elBuilder.inputProps.elementType}
@@ -72,7 +121,12 @@ export default (props) => {
             shouldValidate={elBuilder.inputProps.validation}
             touched={elBuilder.inputProps.touched}
             label={elBuilder.postCompType}
-            changed={(event) => onInputChangeHandler(event.target.value, i)}/>)
+
+            changed={
+                (elBuilder.inputProps.elementType === 'file') ?
+                    (ref) => onInputChangeHandler(ref, i) :
+                    (event) => onInputChangeHandler(event.target.value, i)
+            } />)
     });
 
 
@@ -85,7 +139,7 @@ export default (props) => {
                 <label>Enter The Image srcLink </label>
                 <input type="url" name="thumbnail" id="thumbnail" placeholder="https://example.com" pattern="https://.*" size="30" />
                 {displayElemBuilders ?? ''}
-                <SelectComponent changed={(type) => onAddComponentHandler(type)}/>
+                <SelectComponent changed={(type) => onAddComponentHandler(type)} />
                 <button onClick={onSubmitHandler}>Submit</button>
             </form>
         </div>

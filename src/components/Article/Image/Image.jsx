@@ -1,4 +1,4 @@
-import { AdvancedImage, placeholder, responsive} from "@cloudinary/react";
+import { AdvancedImage} from "@cloudinary/react";
 import React, { Fragment } from "react";
 import classes from './Image.module.css'
 import cld from '../../../cldInstance';
@@ -12,7 +12,7 @@ export default (props) =>{
 
     return(
         <Fragment>
-            <AdvancedImage style={{maxWidth: '100%'}} cldImg={myImage} plugins={[responsive(),placeholder()]}/>
+            <AdvancedImage style={{width: '100%'}} cldImg={myImage}/>
         </Fragment>
     )
 }
