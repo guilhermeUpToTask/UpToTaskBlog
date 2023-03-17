@@ -6,7 +6,7 @@ import cld from '../../../cldInstance';
 
 export default (props) =>{
     
-      const myImage = cld.image('minimalist');
+      const myImage = cld.image(props.id);
     
 
 

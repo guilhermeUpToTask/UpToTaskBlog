@@ -28,19 +28,9 @@ export default (props) => {
             });
         })
         console.log(contentStructure);
-        const [promises, contentIds] = getImgPromises(contentStructure);
-        console.log(promises);
-        console.log(contentIds);
-        Promise.all(promises).then((responses)=>{
-            const newContentStructure = Array.from(contentStructure);
-            responses.map((res, i)=>{
-                const newContent = {...contentStructure[contentIds[i]]};
-                newContent.data = res.data.public_id;
-                newContentStructure[[contentIds[i]]] = newContent;
+        const updateContStructure = await uploadImages(contentStructure);
+        console.log(updateContStructure);
 
-            });
-            console.log(newContentStructure);
-        })
         const form = {
             title: 'whatever',
             thumbNail: 'img_path',
@@ -49,35 +39,34 @@ export default (props) => {
                 data: '02/07',
                 categorie: 'exemple',
             },
-            contentStructure,
+            contentStructure: updateContStructure,
         };
-        /*
-                axios.post('/posts.json', form)
-                    .then((response) => {
-                        console.log(response);
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });*/
-
+        axios.post('/posts.json', form)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
 
-    const getImgPromises = (contStructure) => {
-        let newContStructure = [...contStructure];
-        let promises = [];
-        let ids = [];
-        newContStructure.map((contS, i) => {
-            if (contS.type === 'IMAGE') {
+    const uploadImages = async (contStructure) => {
+        const newContStrct = [...contStructure];
+
+        for (let i = 0; i < newContStrct.length; i++) {
+            if (newContStrct[i].type === elType.IMAGE) {
+                const newContent = { ...newContStrct[i] }
                 const form = new FormData();
-                form.append('file', contS.data);
+                form.append('file', newContent.data);
                 form.append('folder', 'post');
                 form.append('upload_preset', 'h1myoo06');
-                promises.push(axios.post('https://api.cloudinary.com/v1_1/dwflpcrlz/upload', form));
-                ids.push(i);
+                const { data } = await axios.post('https://api.cloudinary.com/v1_1/dwflpcrlz/upload', form);
+                newContent.data = data.public_id;
+                newContStrct[i] = newContent;
             }
-        })
-         return [promises,ids];
+        }
+        return newContStrct;
     }
 
 

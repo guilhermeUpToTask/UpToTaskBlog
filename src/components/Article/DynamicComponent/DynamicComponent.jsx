@@ -6,18 +6,19 @@ import * as elType from "../../../api/Constants/DynamicElementType";
 
 export default (props) => {
     let component;
+    console.log(props.element.data);
     switch (props.element.type) {
         case elType.TEXT:
-            component = (<p >{props.element.content.text}</p>);
+            component = (<p>{props.element.data}</p>);
             break;
         case elType.HEADING:
-            component = (<Heading id={parseHeadingToId(props.element.content.text)}>{props.element.content.text}</Heading>);
+            component = (<Heading id={parseHeadingToId(props.element.data)}>{props.element.data}</Heading>);
             break;
         case elType.IMAGE:
-            component = (<Image/>);
+            component = (<Image id={props.element.data}/>);
             break;
         default:
-            component = (<p>{props.element.content.text}</p>);
+            component = (<p>{props.element.data}</p>);
     }
 
     return (

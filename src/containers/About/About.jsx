@@ -1,10 +1,10 @@
 import React from "react";
-const about = (props) =>{
+import axios from 'axios';
+const about = (props) => {
 
-
-    return(
+    return (
         <div>
-            About page
+            About page - testing features
         </div>
     )
 }
