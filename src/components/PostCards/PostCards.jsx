@@ -19,7 +19,7 @@ export default (props) => {
         const first = (postCards.length === 0);
         console.log(first);
         postCards.push(
-            <PostCard key={key} title={posts[key].title} author={posts[key].author} first={first} 
+            <PostCard key={key} title={posts[key].title} author={posts[key].author} img={posts[key].thumbNail} first={first} 
             clicked={() => onPostClickedHandler(key)}/>
         );
     }

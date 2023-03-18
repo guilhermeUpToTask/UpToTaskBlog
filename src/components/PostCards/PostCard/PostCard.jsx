@@ -6,7 +6,7 @@ export default (props) =>{
     const apndClasses = props.first ? [classes.PostCard, classes.FirstCard] : [classes.PostCard];
     return(
         <div className={apndClasses.join(' ')} onClick={props.clicked}>
-            <PostPhoto first={props.first}/>
+            <PostPhoto first={props.first} imgId={props.img}/>
             <h2>{props.title}</h2>
             <h3>{props.author}</h3>
         </div>

@@ -13,7 +13,7 @@ export default (props) => {
     const [elemBuilders, setElemBuilders] = useState([]);
 
     useEffect(() => {
-        onAddMultipleComponentsHandler([elType.TITLE, elType.IMAGE]);
+        onAddMultipleComponentsHandler([elType.IMAGE, elType.TITLE]);
     }, []);
 
 
@@ -28,10 +28,10 @@ export default (props) => {
             });
         })
 
-        const title = contentStructure[0].data;
+        const title = contentStructure[1].data;
         const titleToId = parseTextToId(title);
         const updateContStructure = await uploadImages(contentStructure, titleToId);
-        const thumbnailId=updateContStructure[1].data;
+        const thumbnailId=updateContStructure[0].data;
 
         const form = {
             title: title,
@@ -50,7 +50,7 @@ export default (props) => {
             .catch((error) => {
                 console.log(error);
             });
-            
+
     }
 
 
@@ -117,7 +117,7 @@ export default (props) => {
             invalid={!elBuilder.inputProps.valid}
             shouldValidate={elBuilder.inputProps.validation}
             touched={elBuilder.inputProps.touched}
-            label={elBuilder.postCompType}
+            label={elBuilder.contentType}
 
             changed={
                 (elBuilder.inputProps.elementType === 'file') ?

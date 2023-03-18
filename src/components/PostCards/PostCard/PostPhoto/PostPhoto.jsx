@@ -5,7 +5,7 @@ import classes from './PostPhoto.module.css';
 
 export default (props) =>{
     const apndClasses = props.first ? [classes.PostPhoto, classes.First] : [classes.PostPhoto];
-    const myImage = cld.image('minimalist');
+    const myImage = cld.image(props.imgId);
 
     return(
              <AdvancedImage className={apndClasses.join(' ')} cldImg={myImage} />

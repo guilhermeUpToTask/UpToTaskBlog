@@ -27,7 +27,6 @@ export default (props) =>{
 
     return(
         <article className={classes.Article}>
-            <Title>{post.title}</Title>
             <h3>{post.info.author}</h3>
             {contentComponents}
         </article>
