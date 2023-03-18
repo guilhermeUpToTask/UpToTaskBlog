@@ -1,3 +1,4 @@
+export const TITLE = 'TITLE';
 export const TEXT = 'TEXT';
 export const HEADING = 'HEADING';
 export const IMAGE = 'IMAGE';

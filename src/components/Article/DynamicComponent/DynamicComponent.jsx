@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import Heading from "../Heading/Heading";
 import Image from "../Image/Image";
-import parseHeadingToId from "../../../api/parseHeadingToId";
+import parseTextToId from "../../../api/parseTextToId";
 import * as elType from "../../../api/Constants/DynamicElementType";
 
 export default (props) => {
@@ -12,7 +12,7 @@ export default (props) => {
             component = (<p>{props.element.data}</p>);
             break;
         case elType.HEADING:
-            component = (<Heading id={parseHeadingToId(props.element.data)}>{props.element.data}</Heading>);
+            component = (<Heading id={parseTextToId(props.element.data)}>{props.element.data}</Heading>);
             break;
         case elType.IMAGE:
             component = (<Image id={props.element.data}/>);

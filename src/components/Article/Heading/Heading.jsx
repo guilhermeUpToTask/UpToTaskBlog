@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import classes from './Heading.module.css'
-import parseHeadingToId from "../../../api/parseHeadingToId";
+import parseHeadingToId from "../../../api/parseTextToId";
 export default (props) => {
 
 

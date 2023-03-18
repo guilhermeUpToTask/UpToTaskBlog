@@ -1,21 +1,21 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classes from './CreatePost.module.css';
 import axios from "../../../axios-firebase";
 import InputProps from "../../../api/Classes/InputProps";
 import Input from "../../../components/UI/Input/Input";
 import SelectComponent from "../../../components/SelectComponent/SelectComponent";
+import parseTextToId from "../../../api/parseTextToId";
+
 import * as elType from "../../../api/Constants/DynamicElementType";
-import { image } from "@cloudinary/url-gen/qualifiers/source";
 
 export default (props) => {
-    const needToCreateImageInput = '';
-    const needToChooseInputTypeFromElType = '';
-
 
     const [elemBuilders, setElemBuilders] = useState([]);
-    const [title, setTitle] = useState('Default Title');
-    const [thumbNail, setThumbNail] = useState('noUrl');
-    const imgsUpload = useRef([]);
+
+    useEffect(() => {
+        onAddMultipleComponentsHandler([elType.TITLE, elType.IMAGE]);
+    }, []);
+
 
     const onSubmitHandler = async (event) => {
         event.preventDefault();
@@ -27,13 +27,15 @@ export default (props) => {
                 data: elBuilder.inputProps.value
             });
         })
-        console.log(contentStructure);
-        const updateContStructure = await uploadImages(contentStructure);
-        console.log(updateContStructure);
+
+        const title = contentStructure[0].data;
+        const titleToId = parseTextToId(title);
+        const updateContStructure = await uploadImages(contentStructure, titleToId);
+        const thumbnailId=updateContStructure[1].data;
 
         const form = {
-            title: 'whatever',
-            thumbNail: 'img_path',
+            title: title,
+            thumbNail: thumbnailId,
             info: {
                 author: 'john',
                 data: '02/07',
@@ -48,10 +50,11 @@ export default (props) => {
             .catch((error) => {
                 console.log(error);
             });
+            
     }
 
 
-    const uploadImages = async (contStructure) => {
+    const uploadImages = async (contStructure, folderName) => {
         const newContStrct = [...contStructure];
 
         for (let i = 0; i < newContStrct.length; i++) {
@@ -59,7 +62,7 @@ export default (props) => {
                 const newContent = { ...newContStrct[i] }
                 const form = new FormData();
                 form.append('file', newContent.data);
-                form.append('folder', 'post');
+                form.append('folder', folderName);
                 form.append('upload_preset', 'h1myoo06');
                 const { data } = await axios.post('https://api.cloudinary.com/v1_1/dwflpcrlz/upload', form);
                 newContent.data = data.public_id;
@@ -78,12 +81,21 @@ export default (props) => {
         setElemBuilders(updatedElemBuilders);
 
     }
+    const onAddMultipleComponentsHandler = (types) =>{
+        const inputTypes = types.map(type => elTypeToInptType(type));
+        const newInputs = inputTypes.map( (inputType, i) => 
+            new InputProps(inputType, { type: inputType, placeholder: `Write the ${types[i]}` }) );
+        const newElemBuilders = types.map( (type, i) => ({ inputProps: newInputs[i], contentType: type }) ); 
+        const updatedElemBuilders = elemBuilders.concat(newElemBuilders);
+        setElemBuilders(updatedElemBuilders);
+    }
 
     const elTypeToInptType = (elemType) => {
         switch (elemType) {
             case elType.HEADING: return 'input';
             case elType.TEXT: return 'text';
             case elType.IMAGE: return 'file';
+            case elType.TITLE: return 'input';
             default: return '';
         }
     }
@@ -119,10 +131,6 @@ export default (props) => {
         <div className={classes.CreatePost}>
 
             <form >
-                <label >Enter the Title</label>
-                <input id="title" type="text" name="title" placeholder="Title" />
-                <label>Enter The Image srcLink </label>
-                <input type="url" name="thumbnail" id="thumbnail" placeholder="https://example.com" pattern="https://.*" size="30" />
                 {displayElemBuilders ?? ''}
                 <SelectComponent changed={(type) => onAddComponentHandler(type)} />
                 <button onClick={onSubmitHandler}>Submit</button>

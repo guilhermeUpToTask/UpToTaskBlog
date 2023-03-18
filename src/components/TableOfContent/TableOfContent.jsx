@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {NavLink, useLocation } from "react-router-dom";
 import classes from './TableOfContent.module.css';
+
 export default (props) =>{
     const [headings, setHeadings] = useState(null);
 
@@ -28,7 +29,8 @@ export default (props) =>{
 
         document.querySelector(`#${id}`).scrollIntoView({
             behavior: "smooth",
-            block: "start"
+            block: "start",
+            top: 20,
           });
         }
 

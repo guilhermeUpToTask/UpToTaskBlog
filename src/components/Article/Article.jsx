@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import classes from './Article.module.css'
 import Title from "./Title/Title";
-import Image from "./Image/Image";
-import Heading from "./Heading/Heading";
 import DynamicComponent from "./DynamicComponent/DynamicComponent";
 
 export default (props) =>{
+
+    //later on we will se react query to implement
     const postData = props.loader.read();
     const [post, setPost] = useState(postData);
 
