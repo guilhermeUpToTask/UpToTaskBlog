@@ -19,6 +19,7 @@ function App() {
       <Route path='posts' element={<Posts/>}
       loader={() => fetchData('/posts.json')}/>
       <Route path='post/:postId' 
+      //later on we need to fetchdata based on the title
         loader={ ({params}) => fetchData(`posts/${params.postId}.json`)}
         element={<Post/>}/>
 

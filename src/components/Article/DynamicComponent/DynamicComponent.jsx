@@ -19,7 +19,10 @@ export default (props) => {
             component = (<Heading id={parseTextToId(props.element.data)}>{props.element.data}</Heading>);
             break;
         case elType.IMAGE:
-            component = (<Image id={props.element.data}/>);
+            component = (<Image id={props.element.data} />);
+            break;
+        case elType.THUMBNAIL:
+            component = (<Image id={props.element.data} />);
             break;
         default:
             component = (<p>{props.element.data}</p>);

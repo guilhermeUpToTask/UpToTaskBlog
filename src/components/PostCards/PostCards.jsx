@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import fetchData from "../../api/fetchData";
 import PostCard from "./PostCard/PostCard";
 import classes from "./PostCards.module.css";
 import { useNavigate } from "react-router-dom";

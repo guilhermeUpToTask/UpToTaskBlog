@@ -13,7 +13,7 @@ export default (props) => {
     const [elemBuilders, setElemBuilders] = useState([]);
 
     useEffect(() => {
-        onAddMultipleComponentsHandler([elType.IMAGE, elType.TITLE]);
+        onAddMultipleComponentsHandler([elType.THUMBNAIL, elType.TITLE]);
     }, []);
 
 
@@ -28,6 +28,8 @@ export default (props) => {
             });
         })
 
+
+        //later we need to refactor this to get the title dynamic from contentstructure
         const title = contentStructure[1].data;
         const titleToId = parseTextToId(title);
         const updateContStructure = await uploadImages(contentStructure, titleToId);
@@ -89,12 +91,21 @@ export default (props) => {
         const updatedElemBuilders = elemBuilders.concat(newElemBuilders);
         setElemBuilders(updatedElemBuilders);
     }
+    const onRemoveComponentHandler=(id) =>{
+        const elemBuilder= {...elemBuilders[id]};
+        if (elemBuilder.contentType !== elType.TITLE && elemBuilder.contentType !== elType.THUMBNAIL){
+            const newElemBuilders = [...elemBuilders];
+            newElemBuilders.splice(id, 1);
+            setElemBuilders(newElemBuilders);
+        }
+    }
 
     const elTypeToInptType = (elemType) => {
         switch (elemType) {
             case elType.HEADING: return 'input';
             case elType.TEXT: return 'text';
             case elType.IMAGE: return 'file';
+            case elType.THUMBNAIL: return 'file';
             case elType.TITLE: return 'input';
             default: return '';
         }
@@ -118,7 +129,7 @@ export default (props) => {
             shouldValidate={elBuilder.inputProps.validation}
             touched={elBuilder.inputProps.touched}
             label={elBuilder.contentType}
-
+            clicked={() =>onRemoveComponentHandler(i)}
             changed={
                 (elBuilder.inputProps.elementType === 'file') ?
                     (ref) => onInputChangeHandler(ref, i) :

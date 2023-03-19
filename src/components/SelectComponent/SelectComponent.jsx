@@ -16,6 +16,8 @@ export default (props) => {
         }));
 
 
+
+    //need to handle when the mouse click off the select to disable    
     const onSelectChangedHandler = (type) => {
         props.changed(type);
         setSelectedCompType('none');
