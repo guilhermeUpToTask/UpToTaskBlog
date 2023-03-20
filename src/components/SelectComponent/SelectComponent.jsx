@@ -6,7 +6,6 @@ import * as elType from "../../api/Constants/DynamicElementType";
 
 export default (props) => {
     const [showSelectAddComponent, setShowSelectAddComponent] = useState(false);
-    const [selectedCompType, setSelectedCompType] = useState('none');
     const [selectCompProps, setSelectCompProps] = useState(new SelectProps('select',
         {
             options: [{ value: 'none', displayValue: 'Please choose a Component Type' },
@@ -20,7 +19,6 @@ export default (props) => {
     //need to handle when the mouse click off the select to disable    
     const onSelectChangedHandler = (type) => {
         props.changed(type);
-        setSelectedCompType('none');
         setShowSelectAddComponent(false);
     }
 

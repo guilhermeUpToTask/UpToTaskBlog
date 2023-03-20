@@ -49,10 +49,11 @@ const input = (props) => {
             break;
 
     }
+    const clicked = (props.removable) ? props.clicked : undefined;
 
     return (
         <div className={classes.Input}>
-            <label className={classes.Label} onClick={props.clicked}>{props.label}</label>
+            <label className={classes.Label} onClick={clicked}>{props.label}</label>
             {inputElement}
         </div>
     );

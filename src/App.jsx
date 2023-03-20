@@ -18,13 +18,16 @@ function App() {
       <Route index element={<Navigate to='posts' replace/>} />
       <Route path='posts' element={<Posts/>}
       loader={() => fetchData('/posts.json')}/>
+
       <Route path='post/:postId' 
       //later on we need to fetchdata based on the title
         loader={ ({params}) => fetchData(`posts/${params.postId}.json`)}
         element={<Post/>}/>
+      <Route path='management' 
+        loader={() => ({categories: fetchData('/categories.json')}) }
+        element={<Management/>}/>
 
       <Route path='login' element={<Login/>}/>
-      <Route path='management' element={<Management/>}/>
       <Route path='search' element={<Search/>}/>
       <Route path='about' element={<About/>}/>
       <Route path='*' element={<h1>Not Found</h1>} />

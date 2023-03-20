@@ -4,13 +4,16 @@ import axios from "../../../axios-firebase";
 import InputProps from "../../../api/Classes/InputProps";
 import Input from "../../../components/UI/Input/Input";
 import SelectComponent from "../../../components/SelectComponent/SelectComponent";
+import SelectCategory from "../../../components/SelectCategory/SelectCategory";
 import parseTextToId from "../../../api/parseTextToId";
+
 
 import * as elType from "../../../api/Constants/DynamicElementType";
 
 export default (props) => {
 
     const [elemBuilders, setElemBuilders] = useState([]);
+    const [category, setCategory] = useState('');
 
     useEffect(() => {
         onAddMultipleComponentsHandler([elType.THUMBNAIL, elType.TITLE]);
@@ -28,12 +31,11 @@ export default (props) => {
             });
         })
 
-
         //later we need to refactor this to get the title dynamic from contentstructure
         const title = contentStructure[1].data;
         const titleToId = parseTextToId(title);
         const updateContStructure = await uploadImages(contentStructure, titleToId);
-        const thumbnailId=updateContStructure[0].data;
+        const thumbnailId = updateContStructure[0].data;
 
         const form = {
             title: title,
@@ -41,7 +43,7 @@ export default (props) => {
             info: {
                 author: 'john',
                 data: '02/07',
-                categorie: 'exemple',
+                category: category,
             },
             contentStructure: updateContStructure,
         };
@@ -55,7 +57,7 @@ export default (props) => {
 
     }
 
-
+    //later we will change to a generic function and outsorcer it
     const uploadImages = async (contStructure, folderName) => {
         const newContStrct = [...contStructure];
 
@@ -74,6 +76,9 @@ export default (props) => {
         return newContStrct;
     }
 
+    const onSelectCtgr = (category) => {
+        setCategory(category);
+    }
 
     const onAddComponentHandler = (type) => {
         const inputType = elTypeToInptType(type);
@@ -83,23 +88,22 @@ export default (props) => {
         setElemBuilders(updatedElemBuilders);
 
     }
-    const onAddMultipleComponentsHandler = (types) =>{
+    const onAddMultipleComponentsHandler = (types) => {
         const inputTypes = types.map(type => elTypeToInptType(type));
-        const newInputs = inputTypes.map( (inputType, i) => 
-            new InputProps(inputType, { type: inputType, placeholder: `Write the ${types[i]}` }) );
-        const newElemBuilders = types.map( (type, i) => ({ inputProps: newInputs[i], contentType: type }) ); 
+        const newInputs = inputTypes.map((inputType, i) =>
+            new InputProps(inputType, { type: inputType, placeholder: `Write the ${types[i]}` }));
+        const newElemBuilders = types.map((type, i) => ({ inputProps: newInputs[i], contentType: type }));
         const updatedElemBuilders = elemBuilders.concat(newElemBuilders);
         setElemBuilders(updatedElemBuilders);
     }
-    const onRemoveComponentHandler=(id) =>{
-        const elemBuilder= {...elemBuilders[id]};
-        if (elemBuilder.contentType !== elType.TITLE && elemBuilder.contentType !== elType.THUMBNAIL){
-            const newElemBuilders = [...elemBuilders];
-            newElemBuilders.splice(id, 1);
-            setElemBuilders(newElemBuilders);
-        }
+    const onRemoveComponentHandler = (id) => {
+        const elemBuilder = { ...elemBuilders[id] };
+        const newElemBuilders = [...elemBuilders];
+        newElemBuilders.splice(id, 1);
+        setElemBuilders(newElemBuilders);
     }
 
+    //outsourcer it
     const elTypeToInptType = (elemType) => {
         switch (elemType) {
             case elType.HEADING: return 'input';
@@ -120,6 +124,8 @@ export default (props) => {
         setElemBuilders(newElemBuilders);
 
     }
+
+
     const displayElemBuilders = elemBuilders.map((elBuilder, i) => {
         return (<Input key={elBuilder.contentType + i}
             elementType={elBuilder.inputProps.elementType}
@@ -129,7 +135,8 @@ export default (props) => {
             shouldValidate={elBuilder.inputProps.validation}
             touched={elBuilder.inputProps.touched}
             label={elBuilder.contentType}
-            clicked={() =>onRemoveComponentHandler(i)}
+            removable={(elBuilder.contentType !== elType.TITLE && elBuilder.contentType !== elType.THUMBNAIL)}
+            clicked={() => onRemoveComponentHandler(i)}
             changed={
                 (elBuilder.inputProps.elementType === 'file') ?
                     (ref) => onInputChangeHandler(ref, i) :
@@ -142,6 +149,7 @@ export default (props) => {
         <div className={classes.CreatePost}>
 
             <form >
+                <SelectCategory changed={onSelectCtgr} />
                 {displayElemBuilders ?? ''}
                 <SelectComponent changed={(type) => onAddComponentHandler(type)} />
                 <button onClick={onSubmitHandler}>Submit</button>
