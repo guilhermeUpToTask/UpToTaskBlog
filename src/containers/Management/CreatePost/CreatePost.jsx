@@ -37,6 +37,8 @@ export default (props) => {
         const updateContStructure = await uploadImages(contentStructure, titleToId);
         const thumbnailId = updateContStructure[0].data;
 
+
+        console.log(category);
         const form = {
             title: title,
             thumbNail: thumbnailId,

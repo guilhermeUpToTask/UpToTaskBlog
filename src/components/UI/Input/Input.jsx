@@ -6,6 +6,7 @@ const input = (props) => {
     let inputClasses = [classes.InputElement];
     const inputRef = useRef();
 
+
     if (props.invalid && props.shouldValidate && props.touched) {
         inputClasses.push(classes.Invalid);
     }
@@ -28,7 +29,8 @@ const input = (props) => {
                 <select className={inputClasses.join(' ')}
                     value={props.value}
                     onChange={props.changed}>
-                    {props.elementConfig.options.map(option =>
+                    {
+                    props.elementConfig.options.map(option =>
                         <option key={option.value} value={option.value}>
                             {option.displayValue}
                         </option>
