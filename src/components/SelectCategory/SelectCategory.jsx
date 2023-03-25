@@ -23,9 +23,11 @@ export default (props) => {
     }, [categories])
 
     const toOptionsFormat = (categories) => {
-        return categories.map((category) => {
-            return { value: category.id, displayValue: category.name };
-        });
+
+        return [{ value: 'none', displayValue: 'Please choose a Category' }, ...categories.map((category) => {
+            return { value: category.name, displayValue: category.name };
+        })];
+
     }
     //need to handle when the mouse click off the select to disable    
     const onSelectChangedHandler = (value) => {

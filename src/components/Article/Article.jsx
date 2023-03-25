@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import classes from './Article.module.css'
 import DynamicComponent from "./DynamicComponent/DynamicComponent";
 
-export default (props) =>{
 
+export default (props) =>{
     //later on we will see react query to implement
     const postData = props.loader.read();
     const [post, setPost] = useState(postData);
-
     const needToHandleNotFoundData = '';
 
 
@@ -27,6 +26,7 @@ export default (props) =>{
     return(
         <article className={classes.Article}>
             <h3>{post.info.author}</h3>
+            <h3>{post.info.category}</h3>            
             {contentComponents}
         </article>
     )

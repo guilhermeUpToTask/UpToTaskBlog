@@ -1,5 +1,10 @@
 :root{
-  --afterToolbar: 50px;
+--afterToolbar: 50px;
+--mainColor1: rgb(0, 0, 0);
+--mainColor2: rgb(255, 255, 255);
+--mainColor3: rgb(0, 0, 0);
+--mainColor4: rgb(255, 255, 255);
+
 }
 
 body {

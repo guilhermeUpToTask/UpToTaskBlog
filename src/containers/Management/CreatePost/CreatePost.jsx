@@ -6,12 +6,12 @@ import Input from "../../../components/UI/Input/Input";
 import SelectComponent from "../../../components/SelectComponent/SelectComponent";
 import SelectCategory from "../../../components/SelectCategory/SelectCategory";
 import parseTextToId from "../../../api/parseTextToId";
-
+import { useNavigate } from "react-router";
 
 import * as elType from "../../../api/Constants/DynamicElementType";
 
 export default (props) => {
-
+    const navigate = useNavigate();
     const [elemBuilders, setElemBuilders] = useState([]);
     const [category, setCategory] = useState('');
 
@@ -37,7 +37,6 @@ export default (props) => {
         const updateContStructure = await uploadImages(contentStructure, titleToId);
         const thumbnailId = updateContStructure[0].data;
 
-
         console.log(category);
         const form = {
             title: title,
@@ -51,7 +50,7 @@ export default (props) => {
         };
         axios.post('/posts.json', form)
             .then((response) => {
-                console.log(response);
+                navigate('/posts');
             })
             .catch((error) => {
                 console.log(error);
@@ -62,9 +61,9 @@ export default (props) => {
     //later we will change to a generic function and outsorcer it
     const uploadImages = async (contStructure, folderName) => {
         const newContStrct = [...contStructure];
-
+        console.log(folderName);
         for (let i = 0; i < newContStrct.length; i++) {
-            if (newContStrct[i].type === elType.IMAGE) {
+            if (newContStrct[i].type === elType.IMAGE || newContStrct[i].type === elType.THUMBNAIL) {
                 const newContent = { ...newContStrct[i] }
                 const form = new FormData();
                 form.append('file', newContent.data);

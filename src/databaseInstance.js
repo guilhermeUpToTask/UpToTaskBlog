@@ -1,6 +1,9 @@
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 import { getDatabase } from 'firebase/database';
 
+
+//we have to change the name later so can be more generic like firebaseInstance
 const firebaseConfig = {
     apiKey: "AIzaSyAl3WtNOplhEx8yrEUDw13RIASHoHquKvQ",
     authDomain: "up-to-task-blog.firebaseapp.com",
@@ -13,5 +16,7 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app, 'https://up-to-task-blog-default-rtdb.firebaseio.com/');
+const auth = getAuth(app);
 
+export {auth};
 export default database;
