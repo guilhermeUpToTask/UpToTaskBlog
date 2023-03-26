@@ -7,18 +7,20 @@ import SelectComponent from "../../../components/SelectComponent/SelectComponent
 import SelectCategory from "../../../components/SelectCategory/SelectCategory";
 import parseTextToId from "../../../api/parseTextToId";
 import { useNavigate } from "react-router";
-
+import {auth} from "../../../databaseInstance";
+import { useAuthState } from "react-firebase-hooks/auth";
 import * as elType from "../../../api/Constants/DynamicElementType";
 
 export default (props) => {
     const navigate = useNavigate();
+    
+    const [user, loading, error] = useAuthState(auth);
     const [elemBuilders, setElemBuilders] = useState([]);
     const [category, setCategory] = useState('');
 
     useEffect(() => {
         onAddMultipleComponentsHandler([elType.THUMBNAIL, elType.TITLE]);
     }, []);
-
 
     const onSubmitHandler = async (event) => {
         event.preventDefault();
@@ -48,7 +50,10 @@ export default (props) => {
             },
             contentStructure: updateContStructure,
         };
-        axios.post('/posts.json', form)
+
+        const idToken = await user.getIdToken(true);
+        console.log(idToken)
+        axios.post('/posts.json?auth='+idToken, form)
             .then((response) => {
                 navigate('/posts');
             })

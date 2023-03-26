@@ -8,8 +8,9 @@ import Management from './containers/Management/Management';
 import About from './containers/About/About';
 import Search from './containers/Search/Search';
 
-import database from "./databaseInstance";
+import {database, auth} from "./databaseInstance";
 import { ref, onValue, off } from 'firebase/database';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { categoriesUpdate } from "./store/reducers/categories";
 import {useDispatch } from 'react-redux';
 
@@ -18,7 +19,9 @@ import fetchData from './api/fetchData';
 
 
 function App() {
+  const [user, loading, error] = useAuthState(auth);
 
+  //later we need to outsorce this code to a component for exemple
   const dispatch = useDispatch();
   useEffect(() => {
       const categoriesRef = ref(database, 'categories/');
@@ -31,7 +34,6 @@ function App() {
   }, []);
   const onCategoriesChangeListener = (categoriesRef) =>{
     const callback = onValue(categoriesRef, (snapshot) => {
-
         const categoriesData = snapshot.toJSON();
         const fetchedCategories = [];
         for (let key in categoriesData) {
@@ -44,23 +46,24 @@ function App() {
 
     return callback;
 }
-
-
+  const getManagementState = () =>{
+    if (loading) return <>Loading</>
+    else return (user) ? <Management/> : <Login/>
+  }
+  const management = getManagementState();
 
   const router= createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<Layout/>}>
       <Route index element={<Navigate to='posts' replace/>} />
+
       <Route path='posts' element={<Posts/>}
       loader={() => fetchData('/posts.json')}/>
-
       <Route path='post/:postId' 
       //later on we need to fetchdata based on the title
         loader={ ({params}) => fetchData(`posts/${params.postId}.json`)}
         element={<Post/>}/>
-      <Route path='management' 
-        element={<Management/>}/>
 
-      <Route path='login' element={<Login/>}/>
+      <Route path='management' element={management}/>
       <Route path='search' element={<Search/>}/>
       <Route path='about' element={<About/>}/>
       <Route path='*' element={<h1>Not Found</h1>} />

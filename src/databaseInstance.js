@@ -19,4 +19,5 @@ const database = getDatabase(app, 'https://up-to-task-blog-default-rtdb.firebase
 const auth = getAuth(app);
 
 export {auth};
-export default database;
+export {database}
+export default app;
