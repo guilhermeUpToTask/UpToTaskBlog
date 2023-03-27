@@ -19,7 +19,6 @@ import fetchData from './api/fetchData';
 
 
 function App() {
-  const [user, loading, error] = useAuthState(auth);
 
   //later we need to outsorce this code to a component for exemple
   const dispatch = useDispatch();
@@ -46,11 +45,6 @@ function App() {
 
     return callback;
 }
-  const getManagementState = () =>{
-    if (loading) return <>Loading</>
-    else return (user) ? <Management/> : <Login/>
-  }
-  const management = getManagementState();
 
   const router= createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<Layout/>}>
@@ -63,7 +57,7 @@ function App() {
         loader={ ({params}) => fetchData(`posts/${params.postId}.json`)}
         element={<Post/>}/>
 
-      <Route path='management' element={management}/>
+      <Route path='management' element={<Management/>}/>
       <Route path='search' element={<Search/>}/>
       <Route path='about' element={<About/>}/>
       <Route path='*' element={<h1>Not Found</h1>} />
