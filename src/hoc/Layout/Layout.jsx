@@ -4,7 +4,7 @@ import Toolbar from "../../components/Navigation/ToolBar/Toolbar"
 import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer"
 import { Outlet } from "react-router";
 import PathBar from "../../components/Navigation/PathBar/PathBar";
-
+import Banner from "../../components/Navigation/Banner/Banner";
 
 const layout = (props) => {
     const [toggleSidebar, setToggleSidebar] = useState(false);
@@ -18,7 +18,7 @@ const layout = (props) => {
             <Toolbar toggleDrawer={toggleSidebarHandler}/>
             <SideDrawer showDrawer={toggleSidebar} toggleDrawer={toggleSidebarHandler}/>
             <main>
-                <PathBar/>
+                <Banner/>
                 <Outlet/>
             </main>
         </Fragment>

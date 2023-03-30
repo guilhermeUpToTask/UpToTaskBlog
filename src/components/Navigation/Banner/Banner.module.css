@@ -1,0 +1,46 @@
+.Banner {
+    --background-color: black;
+    --skewAngle: 2deg;
+    position: relative;
+    isolation: isolate;
+    height: 40vh;
+    width: 100%;
+}
+
+.Banner::before {
+    content: "";
+    background: var(--background-color);
+    height: 20vh;
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+}
+
+.Banner::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--background-color);
+    inset: 0;
+    transform: skewY(var(--skewAngle));
+}
+
+.LogoTitle {
+    font-size: 4vw;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+    background: -webkit-linear-gradient(0deg, rgba(255,255,255,0.4) 40%, rgba(255,255,255,1) 65%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+@media (max-width:800px) {
+    .LogoTitle {
+        font-size: 10vw;
+    }
+}

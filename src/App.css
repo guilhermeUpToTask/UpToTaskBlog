@@ -4,7 +4,7 @@
 --mainColor2: rgb(255, 255, 255);
 --mainColor3: rgb(0, 0, 0);
 --mainColor4: rgb(255, 255, 255);
-
+--background-gradient:  rgba(18,11,33,1) 0%, rgba(0,0,0,1) 100%;
 }
 
 body {
@@ -12,7 +12,7 @@ body {
   text-align: center;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 400;
-  color: black;
-  background-color: white;
+  color: white;
+  background:linear-gradient(var(--background-gradient)); 
   margin: 0px;
 }
