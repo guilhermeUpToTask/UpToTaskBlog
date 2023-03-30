@@ -5,6 +5,7 @@ import CurrentUser from "../../components/Authentication/CurrentUser/CurrentUser
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../databaseInstance';
 import Login from "../Login/Login";
+import classes from "./Management.module.css";
 const management = (props) => {
     const [user, loading, error] = useAuthState(auth);
 
@@ -27,7 +28,7 @@ const management = (props) => {
     console.log('redering management');
     const content = getManagementState();
     return (
-        <div>
+        <div className={classes.Management}>
             {content}
         </div>
     )

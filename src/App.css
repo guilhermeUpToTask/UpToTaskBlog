@@ -8,11 +8,10 @@
 }
 
 body {
-  height: 100%;
   text-align: center;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 400;
   color: white;
-  background:linear-gradient(var(--background-gradient)); 
+  background:linear-gradient(var(--background-gradient)) no-repeat fixed; 
   margin: 0px;
 }
