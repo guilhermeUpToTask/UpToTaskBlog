@@ -2,9 +2,16 @@
 --afterToolbar: 50px;
 --mainColor1: rgb(0, 0, 0);
 --mainColor2: rgb(255, 255, 255);
---mainColor3: rgb(0, 0, 0);
---mainColor4: rgb(255, 255, 255);
+--mainColor3: rgb(102, 102, 102);
+--mainColor4: rgb(146, 146, 146);
+--mainColor5: rgb(18, 11, 33);
 --background-gradient:  rgba(18,11,33,1) 0%, rgba(0,0,0,1) 100%;
+font-size: 1.1vw;
+}
+@media (max-width: 600px){
+  :root{
+    font-size: 3vw;
+  }
 }
 
 body {

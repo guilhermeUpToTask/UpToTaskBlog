@@ -1,14 +1,13 @@
 import React from "react";
 import classes from './PostCard.module.css';
-import PostPhoto from "./PostPhoto/PostPhoto";
-
+import CardPhoto from "./CardPhoto/CardPhoto";
+import CardInfo from "./CardInfo/CardInfo";
 export default (props) =>{
     const apndClasses = props.first ? [classes.PostCard, classes.FirstCard] : [classes.PostCard];
     return(
         <div className={apndClasses.join(' ')} onClick={props.clicked}>
-            <PostPhoto first={props.first} imgId={props.img}/>
-            <h2>{props.title}</h2>
-            <h3>{props.author}</h3>
+            <CardPhoto first={props.first} imgId={props.img}/>
+            <CardInfo/>
         </div>
     )
 }

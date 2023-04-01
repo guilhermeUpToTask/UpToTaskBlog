@@ -1,41 +1,47 @@
 .PostCard{
     text-align: left;
-    border: 1px solid black;
     overflow: hidden;
-}
-.PostCard h2 {
     font-size:2vw;
-    margin: 1vw;
-}
-.PostCard h3{
-    font-size: 1.5vw;
-    margin: 1vw;
-}
-.FirstCard{
-    grid-column: 3/1;
-    border: 1px solid rgb(150, 150, 150);
-}
-.FirstCard h2{
-    font-size: 3vw;
-}
-.FirstCard h3{
-    font-size: 2.5vw;
+    cursor: pointer;
 }
 
+.FirstCard{
+    grid-column: 3/1;
+    font-size: 3vw;
+}
+.FirstCard > div > p {
+    font-size: 1.1rem;
+}
+.FirstCard > div > h3 {
+    font-size: 3rem;
+} 
+.FirstCard > div > address{
+    font-size: 1.1rem;    
+}
+
+.PostCard:hover > div > h3 {
+    color: var(--mainColor4);
+}
+.PostCard:hover > div> address {
+   color: var(--mainColor3);
+}
+.PostCard:hover >div> img {
+    transform: scale(1.3);
+}
+
+
+
 @media (max-width: 600px){
-    .PostCard h2{
-        font-size: 4vw;
-    }
-    .PostCard h3{
-        font-size: 3vw;
-    }
     .FirstCard{
         grid-column: 1;
     }
-    .FirstCard h2{
-        font-size: 4vw;
+    .FirstCard > div > p {
+        font-size: 1rem;
     }
-    .FirstCard h3{
-        font-size: 3vw;
-    }
+    .PostCard:hover > div> address {
+        font-size: 1rem;
+     }
+    .FirstCard > div > h3 {
+        font-size: 2rem;
+    } 
 }
