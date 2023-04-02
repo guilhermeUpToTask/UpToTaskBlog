@@ -42,7 +42,7 @@
     .FirstCard > div > p {
         font-size: 1rem;
     }
-    .PostCard:hover > div> address {
+    .PostCard > div> address {
         font-size: 1rem;
      }
     .FirstCard > div > h3 {
