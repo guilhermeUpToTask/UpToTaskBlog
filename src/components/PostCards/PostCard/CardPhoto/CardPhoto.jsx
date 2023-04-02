@@ -4,12 +4,13 @@ import cld from '../../../../cldInstance';
 import classes from './CardPhoto.module.css';
 
 export default (props) => {
-    const apndClasses = props.first ? [classes.CardPhoto, classes.First] : [classes.CardPhoto];
+    const apndClasses = props.first ? [classes.PhotoFrame, classes.First] : [classes.PhotoFrame];
     const myImage = cld.image(props.imgId);
 
     return (
-        <div className={classes.PhotoFrame}>
-            <AdvancedImage className={apndClasses.join(' ')} cldImg={myImage} />
+
+        <div className={apndClasses.join(' ')}>
+            <AdvancedImage className={classes.CardPhoto} cldImg={myImage} />
         </div>
     )
 }

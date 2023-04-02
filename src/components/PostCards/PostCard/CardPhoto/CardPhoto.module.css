@@ -1,21 +1,27 @@
 
+.PhotoFrame{
+    height: 15vw;
+    width: 100%;
+    overflow: hidden; 
+    transition: box-shadow 0.2s ease-in-out;  
+}
+
 
 .CardPhoto{
     width: 100%;
-    height: 15vw;
+    height: inherit;
+    position: relative;
+    z-index: -1;
     background-color: black;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.2s ease-in-out;
 }
-.PhotoFrame{
-    overflow: hidden;
-    display: flex;
-}
+
 .First{
     height: 25vw;
 }
 
 @media (max-width:600px) {
-    .CardPhoto{
+    .PhotoFrame{
         height: 50vw;
     }
     .First{

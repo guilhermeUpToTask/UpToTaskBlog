@@ -19,14 +19,18 @@
     font-size: 1.1rem;    
 }
 
+
 .PostCard:hover > div > h3 {
     color: var(--mainColor4);
 }
 .PostCard:hover > div> address {
    color: var(--mainColor3);
 }
+.PostCard:hover > div:has(img){
+    box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+}
 .PostCard:hover >div> img {
-    transform: scale(1.3);
+    transform: scale(1.2);
 }
 
 
