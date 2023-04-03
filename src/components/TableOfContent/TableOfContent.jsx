@@ -19,7 +19,7 @@ export default (props) =>{
     const needToHandleCurrentHeadingOnView = '';
 
     const headingComponents = headings?.map((elem) => 
-    <NavLink key={elem.id} to={`#${elem.id}`} onClick={(e) => onHeadingClickHandler(e, elem.id)}>{elem.headingName}</NavLink>)
+    <NavLink className={classes.Heading} key={elem.id} to={`#${elem.id}`} onClick={(e) => onHeadingClickHandler(e, elem.id)}>{elem.headingName}</NavLink>)
      ?? 'loading';
     const location=useLocation();
 

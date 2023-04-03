@@ -22,6 +22,7 @@
 
 .PostCard:hover > div > h3 {
     color: var(--mainColor4);
+    text-decoration: underline;
 }
 .PostCard:hover > div> address {
    color: var(--mainColor3);

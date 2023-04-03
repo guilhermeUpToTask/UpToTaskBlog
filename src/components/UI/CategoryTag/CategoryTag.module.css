@@ -2,10 +2,10 @@
     background-color: rgba(255, 0, 0, 0.3);
     color: red;
     font-size: 1rem;
-    font-weight: 600;
     width: fit-content;
     padding: 3px;
     box-sizing: border-box;
     border-radius: 5px;
     margin: 0;
+    cursor: pointer;
 }

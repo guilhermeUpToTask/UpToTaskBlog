@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import classes from './Article.module.css'
 import DynamicComponent from "./DynamicComponent/DynamicComponent";
+import ArticleInfo from "./ArticleInfo/ArticleInfo";
 
 
 export default (props) =>{
@@ -22,11 +23,10 @@ export default (props) =>{
     const contentComponents = getContentArray().map((el, i) =>{
         return (<DynamicComponent element={el} key={i}/>)
     });
-
+    console.log(post.info);
     return(
         <article className={classes.Article}>
-            <h3>{post.info.author}</h3>
-            <h3>{post.info.category}</h3>            
+            <ArticleInfo author={post.info.author} date={post.info.date} category={post.info.category}/>
             {contentComponents}
         </article>
     )

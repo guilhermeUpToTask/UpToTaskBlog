@@ -4,8 +4,8 @@ import classes from './SideContent.module.css';
 
 export default (props) => {
     return (
-        <div className={classes.SideContent}>
+        <aside className={classes.SideContent}>
             <TableOfContent />
-        </div>
+        </aside>
     )
 }

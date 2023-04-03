@@ -12,7 +12,7 @@ export default (props) =>{
 
     return(
         <Fragment>
-            <AdvancedImage style={{width: '100%'}} cldImg={myImage}/>
+            <AdvancedImage className={classes.Image} cldImg={myImage}/>
         </Fragment>
     )
 }

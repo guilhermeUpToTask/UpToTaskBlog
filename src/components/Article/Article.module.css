@@ -1,6 +1,7 @@
 .Article{
-    border: 1px solid gray;
-    border-radius: 5%;
+    border: 1px solid #232930;
+    background-color: #0D1117;
+    border-radius: 10px;
     grid-column: 3/1;
     padding: 10px;
     box-sizing: border-box;

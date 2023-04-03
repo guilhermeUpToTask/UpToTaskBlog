@@ -27,6 +27,7 @@
 
 .LogoTitle {
     font-size: 4vw;
+    cursor: default;
     margin: 0;
     display: flex;
     justify-content: center;

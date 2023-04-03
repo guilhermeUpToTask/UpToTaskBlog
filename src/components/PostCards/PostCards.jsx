@@ -7,22 +7,24 @@ import { useNavigate } from "react-router-dom";
 export default (props) => {
 
     const posts = props.loader.read();
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
-    const onPostClickedHandler=(key) =>{
+    const onPostClickedHandler = (key) => {
         navigate(`/post/${key}`);
     }
 
     const postCards = [];
-    
-    for (let key in posts) {
-        postCards.push(
-            <PostCard key={key} title={posts[key].title} author={posts[key].author} img={posts[key].thumbNail} 
-            clicked={() => onPostClickedHandler(key)}/>
-        );
+
+    if (posts) {
+        for (let key in posts) {
+            postCards.push(
+                <PostCard key={key} post={posts[key]}
+                    clicked={() => onPostClickedHandler(key)} />
+            );
+        }
+        postCards.reverse();
+        postCards[0] = cloneElement(postCards[0], { first: true });
     }
-    postCards.reverse();
-    postCards[0] = cloneElement(postCards[0], {first:true});
 
     return (
         <div className={classes.PostCards}>

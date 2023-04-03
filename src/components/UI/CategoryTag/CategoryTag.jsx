@@ -4,7 +4,7 @@ export default function (props) {
 
     return(
         <p className={classes.CategoryTag} >
-            {props.name}
+            {props.category}
         </p>
     )
 }

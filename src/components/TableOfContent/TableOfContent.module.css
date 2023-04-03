@@ -1,13 +1,23 @@
 
 .TableOfContent{
-    border: 1px solid gray;
-    border-radius: 5px;
+    border: 1px solid #232930;
+    background-color: #0D1117;
+    border-radius: 10px;
     padding: 1.5vw;
     box-sizing: border-box;
     position: sticky;
     top: var(--afterToolbar);
     display: flex;
     flex-flow: column;
+
+}
+.Heading{
+    text-decoration: none;
+    color:#ACEEBB;
+    font-weight: 500;
+}
+.Heading:hover{
+    text-decoration: underline;
 }
 
 @media(max-width:600px){

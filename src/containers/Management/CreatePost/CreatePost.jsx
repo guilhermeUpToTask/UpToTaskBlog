@@ -45,7 +45,7 @@ export default (props) => {
             thumbNail: thumbnailId,
             info: {
                 author: 'john',
-                data: '02/07',
+                date: new Date().toUTCString(), //get the current date in the utc format
                 category: category,
             },
             contentStructure: updateContStructure,
