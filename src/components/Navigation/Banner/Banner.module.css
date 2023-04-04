@@ -5,6 +5,9 @@
     isolation: isolate;
     height: 40vh;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .Banner::before {
@@ -39,9 +42,16 @@
     -webkit-text-fill-color: transparent;
 }
 
+.Logo{
+    height: 10vw;
+    margin-right: 10px;
+}
 
 @media (max-width:600px) {
     .LogoTitle {
         font-size: 10vw;
+    }
+    .Banner{
+        flex-flow: column;
     }
 }

@@ -3,8 +3,14 @@ import classes from './Banner.module.css';
 
 export default function (props) {
     return (
-    <section className={classes.Banner}>
-        <h1 className={classes.LogoTitle}>UpToTask Blog</h1>
-    </section>
+        <section className={classes.Banner}>
+            <svg viewBox="188.437 138.345 238.379 238.565" className={classes.Logo}>
+                <g transform="matrix(0.1, 0, 0, -0.1, 186.937469, 376.909698)" fill="#ffffff" stroke="none">
+                    <path d="M1097 2381 l-67 -6 -508 -508 -507 -507 1 -158 c0 -141 3 -166 27 -245 86 -280 269 -476 540 -577 112 -42 291 -62 400 -44 l38 7 -53 35 c-72 48 -196 174 -247 250 -110 163 -160 318 -168 515 -8 194 20 334 99 491 49 98 82 147 150 222 284 311 731 412 1122 253 39 -16 72 -27 74 -24 8 7 -152 118 -233 161 -196 105 -451 156 -668 135z"></path>
+                    <path d="M1422 2044 c-21 -5 -16 -10 40 -53 117 -90 236 -229 296 -348 107 -209 135 -470 77 -698 -79 -308 -321 -579 -610 -684 -226 -82 -486 -83 -694 -5 -123 47 -129 43 -38 -24 219 -161 442 -232 728 -232 l154 0 509 509 510 510 4 124 c7 192 -32 341 -130 504 -102 170 -307 321 -518 379 -55 15 -284 27 -328 18z"></path>
+                </g>
+            </svg>
+            <h1 className={classes.LogoTitle}>UpToTask Blog</h1>
+        </section>
     )
 }
