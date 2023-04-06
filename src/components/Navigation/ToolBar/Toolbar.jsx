@@ -19,7 +19,7 @@ export default (props) =>
             <NavItens/>
         </section>
 
-        <DefaultNavItem link={'/search'}>Search<BiSearch className={classes.Icon}/></DefaultNavItem>
+        <DefaultNavItem link={'/search'}><BiSearch className={classes.Icon}/></DefaultNavItem>
     </header>
 
     )
