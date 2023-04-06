@@ -15,7 +15,7 @@ height: 100vh;
     font-size: 3vw;
   }
 }
-#root, .App, body{
+#root, .App, body, main{
   height: 100%;
 }
 
