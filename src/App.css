@@ -7,7 +7,6 @@
 --mainColor5: rgb(18, 11, 33);
 --background-gradient:  rgba(18,11,33,1) 0%, rgba(0,0,0,1) 100%;
 font-size: 1.1vw;
-position: relative;
 
 }
 @media (max-width: 600px){
@@ -17,12 +16,13 @@ position: relative;
 }
 
 body {
+
   text-align: center;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 400;
   color: white;
-  background:linear-gradient(var(--background-gradient)) no-repeat fixed; 
-  position: absolute;
+  background:linear-gradient(var(--background-gradient)); 
+  background-size: cover;
   margin: 0px;
   height: 100svh;
 }
