@@ -1,14 +1,17 @@
 .NavItem{
-    padding: 10px;
+    padding: .25rem;
     width: 100%;
     box-sizing: border-box;
-    display: block;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
     cursor: pointer;
     text-decoration:none;
     box-sizing: border-box;
     text-decoration: none;
     color: black;
     font-weight: 600;
+
 }
 
 .NavItem:hover{

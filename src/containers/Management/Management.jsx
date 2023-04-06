@@ -6,6 +6,8 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../databaseInstance';
 import Login from "../Login/Login";
 import classes from "./Management.module.css";
+import Spinner from "../../components/UI/Spinner/Spinner";
+
 const management = (props) => {
     const [user, loading, error] = useAuthState(auth);
 
@@ -14,18 +16,17 @@ const management = (props) => {
             management page
             <CurrentUser />
             <CreatePost />
-            <Suspense fallback={<h1>Loading</h1>}>
+            <Suspense fallback={<Spinner/>}>
                 <CreateCategory />
             </Suspense>
         </>
 
 
     const getManagementState = () => {
-        if (loading) return <>Loading</>
+        if (loading) return <Spinner />;
         else return (user) ? displayManagement : <Login/>
     }
 
-    console.log('redering management');
     const content = getManagementState();
     return (
         <div className={classes.Management}>

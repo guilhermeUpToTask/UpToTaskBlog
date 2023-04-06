@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../../databaseInstance';
 import LogOut from "../LogOut/LogOut";
+import Spinner from "../../UI/Spinner/Spinner";
 
 export default (props) => {
     const [user, loading, error] = useAuthState(auth);
@@ -10,7 +11,7 @@ export default (props) => {
     if (loading) {
         return (
             <div>
-                <p>Initialising User...</p>
+                <Spinner/>
             </div>
         );
     }

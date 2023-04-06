@@ -1,8 +1,10 @@
 .DefaultNavItem {
-    padding: 10px;
     cursor: pointer;
     text-decoration: none;
     color: white;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
 }
 
 .DefaultNavItem:hover {

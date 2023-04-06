@@ -12,6 +12,12 @@
     box-sizing:border-box;
     
 }
+.Icon{
+    width: 2rem;
+    height: 2rem;
+    padding: .25rem;
+}
+
 .MobileOnly{
     display: none;
 }

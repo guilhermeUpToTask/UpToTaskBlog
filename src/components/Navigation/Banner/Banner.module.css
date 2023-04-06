@@ -32,10 +32,6 @@
     font-size: 4vw;
     cursor: default;
     margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: inherit;
     background: -webkit-linear-gradient(0deg, rgba(255,255,255,0.4) 40%, rgba(255,255,255,1) 65%);
     background-clip: text;
     -webkit-background-clip: text;
@@ -50,6 +46,9 @@
 @media (max-width:600px) {
     .LogoTitle {
         font-size: 10vw;
+    }
+    .Logo{
+        height: 30vw;
     }
     .Banner{
         flex-flow: column;

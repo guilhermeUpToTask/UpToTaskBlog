@@ -23,7 +23,6 @@ export default (props) =>{
     const contentComponents = getContentArray().map((el, i) =>{
         return (<DynamicComponent element={el} key={i}/>)
     });
-    console.log(post.info);
     return(
         <article className={classes.Article}>
             <ArticleInfo author={post.info.author} date={post.info.date} category={post.info.category}/>

@@ -15,6 +15,9 @@
     text-decoration: none;
     color:#ACEEBB;
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .Heading:hover{
     text-decoration: underline;
