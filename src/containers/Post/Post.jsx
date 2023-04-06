@@ -10,6 +10,7 @@ const post = (props) =>{
 
     return(
         <div className={classes.Post}>
+            <Spinner style={{gridColumn:'4/1'}}/>
             <Suspense fallback={<Spinner style={{gridColumn:'4/1'}}/>}>
                 <Article loader={loader}/>
                 <SideContent/>
