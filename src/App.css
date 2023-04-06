@@ -21,7 +21,6 @@ body {
   font-weight: 400;
   color: white;
   margin: 0px;
-  height: 100svh;
 }
 .App{
   position: absolute;
@@ -32,4 +31,5 @@ body {
   position: fixed;
   height: 	100vh;
   height: 100svh;
+  width: 100%;
 }
