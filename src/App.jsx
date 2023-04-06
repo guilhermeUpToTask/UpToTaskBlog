@@ -65,9 +65,12 @@ function App() {
   ));
 
   return (
+    <>
+    <div className="Background"/>
     <div className="App">
       <RouterProvider router={router}/>
     </div>
+    </>
   )
 }
 

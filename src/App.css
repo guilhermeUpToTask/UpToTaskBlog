@@ -16,13 +16,20 @@ font-size: 1.1vw;
 }
 
 body {
-
   text-align: center;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 400;
   color: white;
-  background:linear-gradient(var(--background-gradient)) no-repeat fixed; 
-  background-size: cover;
   margin: 0px;
+  height: 100svh;
+}
+.App{
+  position: absolute;
+}
+.Background{
+  background:linear-gradient(var(--background-gradient)) no-repeat; 
+  background-size: cover;
+  position: fixed;
+  height: 	100vh;
   height: 100svh;
 }
