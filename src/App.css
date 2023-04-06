@@ -20,5 +20,6 @@ body {
   font-weight: 400;
   color: white;
   background:linear-gradient(var(--background-gradient)) no-repeat fixed; 
+  height: 100svh;
   margin: 0px;
 }
