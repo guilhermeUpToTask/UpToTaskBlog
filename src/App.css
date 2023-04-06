@@ -7,11 +7,16 @@
 --mainColor5: rgb(18, 11, 33);
 --background-gradient:  rgba(18,11,33,1) 0%, rgba(0,0,0,1) 100%;
 font-size: 1.1vw;
+height: 100vh;
+
 }
 @media (max-width: 600px){
   :root{
     font-size: 3vw;
   }
+}
+#root, .App, body{
+  height: 100%;
 }
 
 body {
@@ -20,7 +25,6 @@ body {
   font-weight: 400;
   color: white;
   background:linear-gradient(var(--background-gradient)) no-repeat fixed; 
-  height: 100lvh;
   overscroll-behavior: none;
   margin: 0px;
 }
