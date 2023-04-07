@@ -10,7 +10,7 @@ export default function (props) {
     return (
         <div className={classes.ArticleInfo}>
             <address>Publish By {props.author} / {month} {date.getDate()}, {date.getFullYear()}</address>
-            <CategoryTag category={props.category} />
+            <CategoryTag category={props.category} color={props.color}/>
         </div>
     )
 }

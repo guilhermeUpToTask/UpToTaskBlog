@@ -15,9 +15,9 @@ const management = (props) => {
         <>
             management page
             <CurrentUser />
-            <CreatePost />
+            <CreatePost user={user}/>
             <Suspense fallback={<Spinner/>}>
-                <CreateCategory />
+                <CreateCategory user={user}/>
             </Suspense>
         </>
 

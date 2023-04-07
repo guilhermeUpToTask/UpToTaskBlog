@@ -13,8 +13,6 @@ import * as elType from "../../../api/Constants/DynamicElementType";
 
 export default (props) => {
     const navigate = useNavigate();
-    
-    const [user, loading, error] = useAuthState(auth);
     const [elemBuilders, setElemBuilders] = useState([]);
     const [category, setCategory] = useState('');
 
@@ -51,7 +49,7 @@ export default (props) => {
             contentStructure: updateContStructure,
         };
 
-        const idToken = await user.getIdToken(true);
+        const idToken = await props.user.getIdToken(true);
         console.log(idToken)
         axios.post('/posts.json?auth='+idToken, form)
             .then((response) => {

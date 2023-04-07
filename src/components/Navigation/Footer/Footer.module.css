@@ -1,0 +1,7 @@
+.Footer{
+    height: 20vh;
+    display: flex;
+    justify-content: center; 	/* aligns text to the center */
+    align-items: center;
+    font-weight: 500;
+}

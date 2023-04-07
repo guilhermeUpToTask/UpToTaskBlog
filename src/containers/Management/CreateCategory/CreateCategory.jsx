@@ -6,6 +6,7 @@ import classes from "./CreateCategory.module.css";
 import axios from "../../../axios-firebase";
 import { useSelector } from "react-redux";
 import { selectCategories } from "../../../store/reducers/categories";
+import ColorPicker from "./ColorPicker";
 
 export default (props) => {
 
@@ -13,17 +14,21 @@ export default (props) => {
 
     const [categoryInputProps, setCategoryInputProps] = useState(
         new InputProps('input', { type: 'input', placeholder: `Write the Category Name` }));
+    const [categoryColor, setCategoryColor] = useState({red: '0', green:'0', blue:'0'})
 
-    const onSubmitHandler = (e) => {
+
+    const onSubmitHandler = async (e) => {
 
         e.preventDefault();
         const categoryName = categoryInputProps.value;
         const form = {
             name: categoryName,
             description: 'none',
-            iconPath: 'none'
+            icon: 'none',
+            color: categoryColor,
         }
-        axios.post('/categories.json', form)
+        const idToken = await props.user.getIdToken(true);
+        axios.post('/categories.json?auth='+idToken, form)
             .then((res) => {
                console.log('response', res);
             })
@@ -35,11 +40,21 @@ export default (props) => {
         newCtgrInptProps.value = value;
         setCategoryInputProps(newCtgrInptProps);
     }
+    const onColorInputChange = (red, green, blue) =>{
+        const newColor = {red, green, blue};
+        setCategoryColor({...newColor})
+    }
 
     const displayCategories = categories.map((category) => {
-        return (<h3 key={category.id}>{category.name}</h3>)
+        const style = {
+                padding:'10px',
+                width:'20vw',
+                backgroundColor: `rgb(${category.color?.red}, ${category.color?.green}, ${category.color?.blue})`, // current color picked
+            }
+        console.log(style);
+        return (
+        <h3 style={style} key={category.id}>{category.name}</h3>)
     });
-
     const displayCategoryInput = <Input
         elementType={categoryInputProps.elementType}
         elementConfig={categoryInputProps.elementConfig}
@@ -52,9 +67,10 @@ export default (props) => {
 
     return (
         <div className={classes.CreateCategory}>
+            {displayCategories}
             <form>
-                {displayCategories}
                 {displayCategoryInput}
+                <ColorPicker changed={onColorInputChange} color={categoryColor}/>
                 <button onClick={(e) => onSubmitHandler(e)}>Submit The Category</button>
             </form>
         </div>

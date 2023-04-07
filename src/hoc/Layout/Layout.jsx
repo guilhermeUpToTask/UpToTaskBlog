@@ -5,6 +5,7 @@ import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer"
 import { Outlet } from "react-router";
 import PathBar from "../../components/Navigation/PathBar/PathBar";
 import Banner from "../../components/Navigation/Banner/Banner";
+import Footer from "../../components/Navigation/Footer/Footer";
 
 const layout = (props) => {
     const [toggleSidebar, setToggleSidebar] = useState(false);
@@ -20,6 +21,7 @@ const layout = (props) => {
             <main>
                 <Banner/>
                 <Outlet/>
+                <Footer/>
             </main>
         </Fragment>
     )
