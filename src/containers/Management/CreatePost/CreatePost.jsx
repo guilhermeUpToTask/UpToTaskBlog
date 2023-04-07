@@ -7,14 +7,12 @@ import SelectComponent from "../../../components/SelectComponent/SelectComponent
 import SelectCategory from "../../../components/SelectCategory/SelectCategory";
 import parseTextToId from "../../../api/parseTextToId";
 import { useNavigate } from "react-router";
-import {auth} from "../../../databaseInstance";
-import { useAuthState } from "react-firebase-hooks/auth";
 import * as elType from "../../../api/Constants/DynamicElementType";
 
 export default (props) => {
     const navigate = useNavigate();
     const [elemBuilders, setElemBuilders] = useState([]);
-    const [category, setCategory] = useState('');
+    const [categoryId, setCategoryId] = useState('');
 
     useEffect(() => {
         onAddMultipleComponentsHandler([elType.THUMBNAIL, elType.TITLE]);
@@ -37,14 +35,13 @@ export default (props) => {
         const updateContStructure = await uploadImages(contentStructure, titleToId);
         const thumbnailId = updateContStructure[0].data;
 
-        console.log(category);
         const form = {
             title: title,
             thumbNail: thumbnailId,
             info: {
                 author: 'john',
                 date: new Date().toUTCString(), //get the current date in the utc format
-                category: category,
+                categoryId: categoryId,
             },
             contentStructure: updateContStructure,
         };
@@ -80,8 +77,8 @@ export default (props) => {
         return newContStrct;
     }
 
-    const onSelectCtgr = (category) => {
-        setCategory(category);
+    const onSelectCtgr = (categoryId) => {
+        setCategoryId(categoryId);
     }
 
     const onAddComponentHandler = (type) => {

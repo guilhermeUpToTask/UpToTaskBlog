@@ -25,7 +25,7 @@ export default (props) =>{
     });
     return(
         <article className={classes.Article}>
-            <ArticleInfo author={post.info.author} date={post.info.date} category={post.info.category}/>
+            <ArticleInfo author={post.info.author} date={post.info.date} categoryId={post.info.categoryId}/>
             {contentComponents}
         </article>
     )

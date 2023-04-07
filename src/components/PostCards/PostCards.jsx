@@ -18,7 +18,7 @@ export default (props) => {
     if (posts) {
         for (let key in posts) {
             postCards.push(
-                <PostCard key={key} post={posts[key]}
+               <PostCard key={key} post={posts[key]}
                     clicked={() => onPostClickedHandler(key)} />
             );
         }

@@ -25,7 +25,7 @@ export default (props) => {
     const toOptionsFormat = (categories) => {
 
         return [{ value: 'none', displayValue: 'Please choose a Category' }, ...categories.map((category) => {
-            return { value: category.name, displayValue: category.name };
+            return { value: category.id, displayValue: category.name };
         })];
 
     }

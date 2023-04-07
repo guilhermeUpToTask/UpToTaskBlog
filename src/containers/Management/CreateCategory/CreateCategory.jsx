@@ -44,7 +44,6 @@ export default (props) => {
         const newColor = {red, green, blue};
         setCategoryColor({...newColor})
     }
-
     const displayCategories = categories.map((category) => {
         const style = {
                 padding:'10px',

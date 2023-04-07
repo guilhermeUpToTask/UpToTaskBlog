@@ -4,4 +4,5 @@
     justify-content: center; 	/* aligns text to the center */
     align-items: center;
     font-weight: 500;
+    background-color: black;
 }

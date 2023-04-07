@@ -31,6 +31,8 @@ function App() {
       };
 
   }, []);
+
+  // need to add a first get method so we can have something to show initialy
   const onCategoriesChangeListener = (categoriesRef) =>{
     const callback = onValue(categoriesRef, (snapshot) => {
         const categoriesData = snapshot.toJSON();
