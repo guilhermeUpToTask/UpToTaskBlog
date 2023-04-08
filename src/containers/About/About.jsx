@@ -3,9 +3,9 @@ import React, { useEffect } from "react";
 
 const about = (props) => {
     return (
-        <div>
+        <main>
             About page - testing features
-        </div>
+        </main>
     )
 }
 

@@ -1,0 +1,27 @@
+.Container{
+   margin: 4rem;
+
+}
+.Categories{
+   display: grid;
+   gap: 20px;
+   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr) );
+}
+.Category{
+   border: 1px solid #ffffff;
+   border-radius: 5px;
+   padding:2rem 0px;
+   font-size: 2rem;
+   cursor:pointer;
+   box-sizing: border-box;
+   background-color: rgba(255,255,255, 0.3);
+   color: #ffffff;
+   transition: all 0.2s ease-in-out;
+   position: relative;
+   overflow: hidden;
+   width: 100%;
+   height: auto;
+}
+.Category:hover{
+   transform: scale(1.1);
+}

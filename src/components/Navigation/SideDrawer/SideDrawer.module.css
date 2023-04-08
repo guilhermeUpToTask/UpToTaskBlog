@@ -17,4 +17,5 @@
 }
 .Close{
     transform: translateX(-100%);
+    overflow: hidden;
 }

@@ -3,15 +3,14 @@ import './App.css';
 import Layout from './hoc/Layout/Layout';
 import Posts from './containers/Posts/Posts';
 import Post from './containers/Post/Post';
-import Login from './containers/Login/Login';
 import Management from './containers/Management/Management';
 import About from './containers/About/About';
 import Search from './containers/Search/Search';
+import Categories from './containers/Categories/Categories';
 
-import {database, auth} from "./databaseInstance";
+import {database} from "./databaseInstance";
 import { ref, onValue, off } from 'firebase/database';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { categoriesUpdate } from "./store/reducers/categories";
+import {categoriesUpdate } from "./store/reducers/categories";
 import {useDispatch } from 'react-redux';
 
 import { Route, createBrowserRouter, createRoutesFromElements, Navigate, RouterProvider } from 'react-router-dom';
@@ -62,6 +61,7 @@ function App() {
       <Route path='management' element={<Management/>}/>
       <Route path='search' element={<Search/>}/>
       <Route path='about' element={<About/>}/>
+      <Route path='categories' element={<Categories/>}/>
       <Route path='*' element={<h1>Not Found</h1>} />
     </Route>
   ));

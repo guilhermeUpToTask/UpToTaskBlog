@@ -5,7 +5,7 @@ import { BiGridAlt, BiInfoCircle} from "react-icons/bi";
 export default (props) =>{
     return(
         <div className={classes.NavItens}>
-            <NavItem link={'posts'}><BiGridAlt/>Categories</NavItem>
+            <NavItem link={'categories'}><BiGridAlt/>Categories</NavItem>
             <NavItem link={'about'}><BiInfoCircle/>About</NavItem>
         </div>
     )
