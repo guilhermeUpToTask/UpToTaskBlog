@@ -8,6 +8,7 @@
    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr) );
 }
 .Category{
+   text-decoration: none;
    border: 1px solid #ffffff;
    border-radius: 5px;
    padding:2rem 0px;

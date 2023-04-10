@@ -3,7 +3,7 @@ import classes from './Categories.module.css';
 import { selectCategories } from "../../store/reducers/categories";
 import { useSelector } from "react-redux";
 import Spinner from "../../components/UI/Spinner/Spinner";
-
+import { Link } from "react-router-dom";
 export default function (props) {
     const categories = useSelector(selectCategories);
 
@@ -23,9 +23,14 @@ export default function (props) {
                 } : {};
 
             return (
-                <div key={category.id} className={classes.Category} style={style}>
+                <Link
+                to= {{ 
+                    pathname: '/posts',
+                    search:`?category=${category.id}`
+                }} 
+                key={category.id} className={classes.Category} style={style}>
                     {category.name}
-                </div>)
+                </Link>)
         }) :
         <Spinner />
 
