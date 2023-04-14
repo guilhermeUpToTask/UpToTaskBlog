@@ -7,11 +7,12 @@ import * as elType from "../../api/Constants/DynamicElementType";
 export default (props) => {
     const [showSelectAddComponent, setShowSelectAddComponent] = useState(false);
     const [selectCompProps, setSelectCompProps] = useState(new SelectProps('select',
-        {
+        {//This Options Should Be Dynamic
             options: [{ value: 'none', displayValue: 'Please choose a Component Type' },
             { value: elType.TEXT, displayValue: 'Text' },
             { value: elType.HEADING, displayValue: 'Heading' },
-            { value: elType.IMAGE, displayValue: 'image' },]
+            { value: elType.IMAGE, displayValue: 'image' },
+            { value: elType.CODE, displayValue: 'Code' },]
         }));
 
 

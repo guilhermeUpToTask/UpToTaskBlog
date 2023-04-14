@@ -5,6 +5,7 @@ import Title from "../Title/Title";
 import Text from "../Text/Text";
 import parseTextToId from "../../../api/parseTextToId";
 import * as elType from "../../../api/Constants/DynamicElementType";
+import Code from "../Code/Code";
 
 export default (props) => {
     let component;
@@ -14,7 +15,7 @@ export default (props) => {
             break;
         case elType.TEXT:
             component = (<Text>{props.element.data} </Text>);
-             break;
+            break;
         case elType.HEADING:
             component = (<Heading id={parseTextToId(props.element.data)}>{props.element.data}</Heading>);
             break;
@@ -23,6 +24,9 @@ export default (props) => {
             break;
         case elType.THUMBNAIL:
             component = (<Image id={props.element.data} />);
+            break;
+        case elType.CODE:
+            component = (<Code>{props.element.data} </Code>);
             break;
         default:
             component = (<p>{props.element.data}</p>);

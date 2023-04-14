@@ -104,7 +104,7 @@ export default (props) => {
         setElemBuilders(newElemBuilders);
     }
 
-    //outsourcer it
+    //outsourcer it and make dynamic
     const elTypeToInptType = (elemType) => {
         switch (elemType) {
             case elType.HEADING: return 'input';
@@ -112,6 +112,7 @@ export default (props) => {
             case elType.IMAGE: return 'file';
             case elType.THUMBNAIL: return 'file';
             case elType.TITLE: return 'input';
+            case elType.CODE: return 'text';
             default: return '';
         }
     }
