@@ -5,7 +5,6 @@ import { useLoaderData } from "react-router";
 
 const posts = (props) => {
     const posts = useLoaderData().read();
-    console.log(posts);
    return (
         <div className={classes.Posts}>
                 <PostCards posts={posts}/>
