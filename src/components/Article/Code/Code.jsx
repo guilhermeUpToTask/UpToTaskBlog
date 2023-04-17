@@ -6,10 +6,11 @@ export default function (props) {
     return (
             <SyntaxHighlighter language="javascript" style={atelierPlateauDark} 
             customStyle={{
-                width:'80%',
+                width:'90%',
                 border: '1px solid #845892',
                 fontSize: '1.1rem',
-                margin:'auto'
+                margin:'auto',
+                textAlign:'justify'
             }}>
                 {props.children}
             </SyntaxHighlighter>

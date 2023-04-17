@@ -108,11 +108,11 @@ export default (props) => {
     const elTypeToInptType = (elemType) => {
         switch (elemType) {
             case elType.HEADING: return 'input';
-            case elType.TEXT: return 'text';
+            case elType.TEXT: return 'textarea';
             case elType.IMAGE: return 'file';
             case elType.THUMBNAIL: return 'file';
             case elType.TITLE: return 'input';
-            case elType.CODE: return 'text';
+            case elType.CODE: return 'textarea';
             default: return '';
         }
     }
@@ -150,7 +150,7 @@ export default (props) => {
     return (
         <div className={classes.CreatePost}>
 
-            <form >
+            <form>
                 <SelectCategory changed={onSelectCtgr} />
                 {displayElemBuilders ?? ''}
                 <SelectComponent changed={(type) => onAddComponentHandler(type)} />
